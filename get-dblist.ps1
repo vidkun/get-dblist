@@ -35,4 +35,5 @@ $value = "InstallPath"
 $wmi = [wmiclass]"\\$computerName\root\default:stdRegProv"
 $path = Split-Path -path (($wmi.GetStringValue($hku,$key,$value)).svalue) -parent
 $path
-Get-WmiObject -ComputerName $computerName -Filter
+$filter = "Name='$path'"
+Get-WmiObject -ComputerName $computerName -Filter $filter -Class Win32_Directory #you fail at life
